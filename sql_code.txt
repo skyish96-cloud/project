@@ -1,0 +1,369 @@
+create database mynpti;
+
+CREATE TABLE user_info (
+    user_id     VARCHAR(30) PRIMARY KEY,
+    user_pw     VARCHAR(255) NOT NULL,
+    user_name   VARCHAR(20)  NOT NULL,
+    user_birth  DATE NOT NULL,
+    user_age    INT NOT NULL COMMENT '가입 시 계산된 나이',
+    user_gender TINYINT(1) NOT NULL,
+    user_email  VARCHAR(255) NOT null ,
+    activation  TINYINT(1) NOT NULL DEFAULT 1,
+    admin TINYINT(1) not null default 1
+);
+select * from user_info;
+select * from user_npti;
+select * from user_answer;
+desc user_info;
+drop table user_info;
+drop table user_npti;
+drop table user_answer;
+select * from user_info ui join user_npti un on ui.user_id = un.user_id;
+
+
+create table npti_type (
+    npti_type   varchar(10) primary key comment '개별 npti 타입',
+    npti_group  varchar(20) not null comment '항목 분류',
+    npti_kor    varchar(50) not null comment '개별 항목 한글명'
+) engine=innodb default charset=utf8mb4;
+
+insert into npti_type (npti_type, npti_group, npti_kor) values
+('L','length','긴 기사'),      -- Length Type : 기사 길이
+('S','length','짧은 기사'),   -- Length Type : 기사 길이
+('C','article','텍스트 중심 기사'),    -- Article Type : 기사 유형
+('T','article','이야기형 기사'),   -- Article Type : 기사 유형
+('F','info','객관적 기사'),   -- Information Type : 기사 정보 성격
+('I','info','분석 기사'),   -- Information Type : 기사 정보 성격
+('P','view','우호적 기사'),   -- View Type : 기사 논조/관점
+('N','view','비판적 기사');   -- View Type : 기사 논조/관점
+select * from npti_type;
+select * from NPTI_TYPE;
+drop table npti_type;
+
+
+select * from articles_NPTI where news_id= '6e824662c8b292dc2a617fbe7b013830a7373d70dc4898c758e63bcbbdcf4496';
+
+
+create table npti_code (
+    npti_code    varchar(20) primary key,
+    length_type  varchar(10) not null,
+    article_type varchar(10) not null,
+    info_type    varchar(10) not null,
+    view_type    varchar(10) not null,
+    type_nick    varchar(50),
+    type_de      text,
+    foreign key (length_type)  references npti_type(npti_type),
+    foreign key (article_type) references npti_type(npti_type),
+    foreign key (info_type)    references npti_type(npti_type),
+    foreign key (view_type)    references npti_type(npti_type)
+) engine=innodb default charset=utf8mb4;
+
+select * from npti_code;
+select * from npti_code nc join user_npti un on nc.npti_code = un.npti_code;
+
+drop table npti_code;
+insert into npti_code
+    (npti_code, length_type, article_type, info_type, view_type, type_nick, type_de)
+values
+('LTFP','L','T','F','P','"따뜻한 장문 탐독가"',
+ '장문의 이야기 속에서 "따뜻한 사실"을 찾는 독자.\n스토리 중심이면서 희망적인 메시지를 담은 기사를 선호.'),
+('LTFN','L','T','F','N','"현실 통찰 독서가"',
+ '현실을 통찰하는 긴 스토리를 통해 사회의 불편한 문제를 깊이 들여다보는 독자.\n구조와 원인을 차분히 짚어주는 기사를 선호.'),
+('LTIP','L','T','I','P','"낙관적 사유가"',
+ '낙관적인 서사를 통해 해석과 교훈을 얻는 독자.\n긴 글 속에서 의미와 통찰을 발견할 수 있는 기사를 선호.'),
+('LTIN','L','T','I','N','"구조 해부 사상가"',
+ '구조적 해부와 분석을 통해 복잡한 문제를 이해하려는 독자.\n이야기 속 원인과 구조를 깊게 파헤치는 기사를 선호.'),
+('LCFP','L','C','F','P','"넓은 정보 탐독가"',
+ '풍부한 정보와 맥락을 통해 사실을 넓게 이해하려는 독자.\n장문의 정보 기사로 차분하게 설명해 주는 기사를 선호.'),
+('LCFN','L','C','F','N','"팩트 정밀 감시자"',
+ '팩트와 근거를 바탕으로 사회 문제의 구조를 파악하려는 독자.\n세밀한 데이터와 증거를 짚어주는 장문 기사를 선호.'),
+('LCIP','L','C','I','P','"장문 전망 분석가"',
+ '정보를 기반으로 전망과 해석에 관심을 두는 독자.\n미래 흐름과 의미를 제시하는 장문 분석 기사를 선호.'),
+('LCIN','L','C','I','N','"리스크 구조 분석가"',
+ '리스크와 논점을 구조적으로 분석하려는 독자.\n문제를 냉정하게 해부하는 정보 중심 기사를 선호.'),
+('STFP','S','T','F','P','"힐링 스토리 리더"',
+ '짧은 이야기 안에서 따뜻한 사실을 찾는 독자.\n힘들 때 가볍게 위로와 기분 전환을 줄 수 있는 기사를 선호.'),
+('STFN','S','T','F','N','"팩트 현실주의자"',
+ '짧은 스트레이트 기사로 현실의 불편한 진실을 확인하려는 독자.\n팩트 위주의 간결하고 단단한 기사를 선호.'),
+('STIP','S','T','I','P','"핵심 낙관주의자"',
+ '짧은 기사에서도 의미와 교훈을 얻고 싶어 하는 독자.\n핵심 메시지가 분명하고 긍정적인 기사를 선호.'),
+('STIN','S','T','I','N','"비판적 통찰 추적자"',
+ '짧고 단정한 기사로 문제를 빠르게 파악하려는 독자.\n비판적 관점과 통찰이 또렷한 기사를 선호.'),
+('SCFP','S','C','F','P','"속도형 정보 소비자"',
+ '빠르게 요약된 정보를 통해 긍정적인 흐름을 알고 싶어 하는 독자.\n속도감 있는 사실 전달 기사를 선호.'),
+('SCFN','S','C','F','N','"경제성 강한 체커"',
+ '짧은 정보 속에서 사건의 구조와 비용·효율을 따져보는 독자.\n경제성과 현실성을 점검해 주는 기사를 선호.'),
+('SCIP','S','C','I','P','"빠른 인사이트 수집가"',
+ '짧은 기사에서 인사이트와 해석을 얻고 싶어 하는 독자.\n핵심 요약과 통찰을 한눈에 보여주는 기사를 선호.'),
+('SCIN','S','C','I','N','"리스크 감지 전문가"',
+ '위험 요소와 문제점을 빠르게 감지하려는 독자.\n리스크의 원인과 파장을 간결하게 분석한 기사를 선호.');
+
+create table npti_question (
+    question_id     int primary key comment '질문 id',
+    question_text   text not null comment '설문 질문 내용',
+    npti_axis       varchar(20) not null comment 'npti 축',
+    target_type     tinyint not null comment '점수 방향',
+    question_ratio  float not null comment '해당 질문의 가중치',
+    score_rate      float not null comment '응답 점수 환산 비율',
+    created_at      datetime default current_timestamp
+);
+select * from npti_question;
+drop table npti_question;
+
+insert into npti_question values
+(1,
+ '짧고 핵심만 정리된 기사가 더 편하게 느껴진다.',
+ 'length', 1, 0.4, 0.25, now()),
+(2,
+ '한 문단 안에 결론이 나오는 기사를 선호한다.',
+ 'length', 1, 0.3, 0.25, now()),
+(3,
+ '흥미 있는 내용이라도 스크롤이 길면 끝까지 읽기 힘들다.',
+ 'length', 1, 0.3, 0.25, now());
+
+insert into npti_question values
+(4,
+ '사건·사실만 나열된 기사는 지루하게 느껴진다.',
+ 'article', 1, 0.4, 0.25, now()),
+(5,
+ '인물의 경험이나 감정, 상황 묘사가 담긴 기사가 더 흥미롭다.',
+ 'article', 1, 0.3, 0.25, now()),
+(6,
+ '스토리처럼 전개되며 흐름이 살아 있는 기사에서 더 집중하게 된다.',
+ 'article', 1, 0.3, 0.25, now());
+
+insert into npti_question values
+(7,
+ '객관적 사실과 데이터를 중심으로 정리된 기사를 더 신뢰한다.',
+ 'info', 1, 0.4, 0.25, now()),
+(8,
+ '분석이나 해설이 길어지면 오히려 이해하기 어려워 부담스럽다.',
+ 'info', 1, 0.3, 0.25, now()),
+(9,
+ '어떤 일이 일어났는지만 간단히 정리해 준 기사면 충분하다고 생각한다.',
+ 'info', 1, 0.3, 0.25, now());
+
+insert into npti_question values
+(10,
+ '"어떻게 개선할 수 있는가”보다 “누가 잘못했는가”를 다루는 기사가 더 흥미롭다.',
+ 'view', 1, 0.4, 0.25, now()),
+(11,
+ '긍정적인 성과 중심 기사는 현실을 과장한다고 느낄 때가 많다.',
+ 'view', 1, 0.3, 0.25, now()),
+(12,
+ '기업이나 정부를 칭찬하는 기사보다 비판하는 기사에 더 끌린다.',
+ 'view', 1, 0.3, 0.25, now());
+select version();
+CREATE TABLE user_npti (
+    user_id VARCHAR(50) not null,
+    npti_code VARCHAR(10) NOT NULL,
+    long_score INT DEFAULT 0,
+    short_score INT DEFAULT 0,
+    content_score INT DEFAULT 0,
+    tale_score INT DEFAULT 0,
+    fact_score INT DEFAULT 0,
+    insight_score INT DEFAULT 0,
+    positive_score INT DEFAULT 0,
+    negative_score INT DEFAULT 0,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE current_timestamp,
+    foreign key (user_id)  references user_info(user_id),
+	foreign key (npti_code)  references npti_code(npti_code)
+);
+
+select * from user_npti;
+select news_id, NPTI_code,updated_at from articles_npti order by news_id;
+select * from articles_npti where npti_code='STIN';
+select * from articles_npti where news_id='ebe146adb31457afbd8ba475784de3babcb952ecf436a052198b18e20648a5b1';
+drop table user_npti;
+select * from articles_npti;
+select  length_type, count(*) from articles_npti group by length_type;
+select  article_type, count(*) from articles_npti group by article_type;
+select  info_type, count(*) from articles_npti group by info_type;
+select  view_type, count(*) from articles_npti group by view_type;
+
+
+
+drop table user_answer;
+CREATE TABLE user_answer (
+    user_id       VARCHAR(50) NOT NULL COMMENT '유저 식별자',
+    question_no   INT NOT NULL         COMMENT '질문 번호 (1~12)',
+    answer_value  INT NOT NULL         COMMENT '답변 값',
+    updated_at    DATETIME DEFAULT current_timestamp on update current_timestamp,
+	foreign key (user_id)  references user_info(user_id),
+	foreign key (question_no) references npti_question(question_id)
+) engine=innodb default charset=utf8mb4;
+select * from user_answer;
+
+create table articles_npti(
+	news_id varchar(500) primary key,
+	npti_code VARCHAR(10) NOT NULL,
+    length_type  varchar(10) not null,
+    article_type varchar(10) not null,
+    info_type    varchar(10) not null,
+    view_type    varchar(10) not null,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE current_timestamp,
+    foreign key (npti_code)  references npti_code(npti_code),
+    foreign key (length_type)  references npti_type(npti_type),
+    foreign key (article_type) references npti_type(npti_type),
+    foreign key (info_type)    references npti_type(npti_type),
+    foreign key (view_type)    references npti_type(npti_type)
+);
+    
+select * from user_answer;
+select * from user_npti where user_id = 'test12';
+update user_npti set updated_at = '2026-01-15 11:20:09.000' where user_id = 'test12';
+
+select npti_code, count(npti_code) as count from articles_npti group by npti_code;
+select * from articles_npti where news_id = '4a0fd784efd9e3539d8c395bff0d826e2f69445ef4cbc0b71111bf357891c9e3';
+
+
+
+
+
+-- ------------------------------------------------------------------------------------------------------------------
+-- user_info 더미
+INSERT INTO user_info (user_id, user_pw, user_name, user_birth, user_age, 
+user_gender, user_email, activation, admin) VALUES
+('alex','$2b$12$hash01','김도현','2010-03-12',15,1,'alex@test.com',1,1),
+('brian','$2b$12$hash02','이서연','2009-07-21',16,0,'brian@test.com',1,1),
+('chris','$2b$12$hash03','박지훈','2008-01-09',17,1,'chris@test.com',1,1),
+('dylan','$2b$12$hash04','최민지','2007-11-18',18,0,'dylan@test.com',1,1),
+('ethan','$2b$12$hash05','정우성','2002-05-02',23,1,'ethan@test.com',1,1),
+('felix','$2b$12$hash06','한예린','2000-09-14',25,0,'felix@test.com',1,1),
+('grace','$2b$12$hash07','오세훈','1999-02-27',26,1,'grace@test.com',1,1),
+('henry','$2b$12$hash08','윤지수','1998-12-05',27,0,'henry@test.com',1,1),
+('irene','$2b$12$hash09','임현우','1997-08-19',28,1,'irene@test.com',1,1),
+('jason','$2b$12$hash10','서하늘','1996-04-23',29,0,'jason@test.com',1,1),
+('kevin','$2b$12$hash11','조민석','1994-06-11',31,1,'kevin@test.com',1,1),
+('luna','$2b$12$hash12','백수빈','1993-10-30',32,0,'luna@test.com',1,1),
+('mason','$2b$12$hash13','장태훈','1992-01-17',33,1,'mason@test.com',1,1),
+('nolan','$2b$12$hash14','신유진','1991-02-26',34,0,'nolan@test.com',1,1),
+('oliver','$2b$12$hash15','문성호','1990-07-08',35,1,'oliver@test.com',1,1),
+('paul','$2b$12$hash16','고은채','1989-09-16',36,0,'paul@test.com',1,1),
+('quinn','$2b$12$hash17','류동현','1986-12-01',39,1,'quinn@test.com',1,1),
+('ryan','$2b$12$hash18','차유림','1984-06-14',41,0,'ryan@test.com',1,1),
+('steve','$2b$12$hash19','노준혁','1982-03-03',43,1,'steve@test.com',1,1),
+('tina','$2b$12$hash20','홍예슬','1980-10-22',45,0,'tina@test.com',1,1),
+('aaro','$2b$12$h01','김민수','1998-03-12',27,0,'aaro@test.com',1,1),
+('brik','$2b$12$h02','이준호','1997-07-21',28,0,'brik@test.com',1,1),
+('cavo','$2b$12$h03','박성우','1996-01-09',29,0,'cavo@test.com',1,1),
+('dren','$2b$12$h04','정태훈','1995-11-18',30,0,'dren@test.com',1,1),
+('elmo','$2b$12$h05','최현석','1994-05-02',31,0,'elmo@test.com',1,1),
+('firo','$2b$12$h06','조영민','1993-09-14',32,0,'firo@test.com',1,1),
+('glen','$2b$12$h07','오승훈','1992-02-27',33,0,'glen@test.com',1,1),
+('havo','$2b$12$h08','윤도현','1991-12-05',34,0,'havo@test.com',1,1),
+('ivor','$2b$12$h09','임재현','1990-08-19',35,0,'ivor@test.com',1,1),
+('jaro','$2b$12$h10','서준혁','1999-04-23',26,0,'jaro@test.com',1,1),
+('keln','$2b$12$h11','한지훈','1998-06-11',27,0,'keln@test.com',1,1),
+('lavo','$2b$12$h12','백승우','1997-10-30',28,0,'lavo@test.com',1,1),
+('mire','$2b$12$h13','장동현','1996-01-17',29,0,'mire@test.com',1,1),
+('nexo','$2b$12$h14','신재원','1995-02-26',30,0,'nexo@test.com',1,1),
+('orik','$2b$12$h15','문정우','1994-07-08',31,0,'orik@test.com',1,1),
+('pavo','$2b$12$h16','고현준','1993-09-16',32,0,'pavo@test.com',1,1),
+('qren','$2b$12$h17','류민재','1992-12-01',33,0,'qren@test.com',1,1),
+('rivo','$2b$12$h18','차성훈','1991-06-14',34,0,'rivo@test.com',1,1),
+('selo','$2b$12$h19','노진우','1990-03-03',35,0,'selo@test.com',1,1),
+('tavo','$2b$12$h20','홍기석','1999-10-22',26,0,'tavo@test.com',1,1),
+('ulon','$2b$12$h21','김영호','1998-04-09',27,0,'ulon@test.com',1,1),
+('viro','$2b$12$h22','이상민','1997-08-15',28,0,'viro@test.com',1,1),
+('wexo','$2b$12$h23','박준형','1996-02-02',29,0,'wexo@test.com',1,1),
+('xiro','$2b$12$h24','정기훈','1995-11-11',30,0,'xiro@test.com',1,1),
+('yani','$2b$12$h25','김서연','1999-05-18',26,1,'yani@test.com',1,1),
+('zelo','$2b$12$h26','이유진','1998-09-27',27,1,'zelo@test.com',1,1),
+('aria','$2b$12$h27','박민지','1997-01-06',28,1,'aria2@test.com',1,1),
+('bela','$2b$12$h28','최수빈','1996-12-19',29,1,'bela@test.com',1,1),
+('clio','$2b$12$h29','정유나','1995-03-25',30,1,'clio@test.com',1,1),
+('dara','$2b$12$h30','한지민','1994-07-30',31,1,'dara@test.com',1,1),
+('elle','$2b$12$h31','윤아름','1993-10-14',32,1,'elle@test.com',1,1),
+('fina','$2b$12$h32','임수정','1992-02-08',33,1,'fina@test.com',1,1),
+('gaya','$2b$12$h33','서예린','1991-06-21',34,1,'gaya@test.com',1,1),
+('hana','$2b$12$h34','백지수','1990-09-02',35,1,'hana2@test.com',1,1),
+('ivya','$2b$12$h35','차은별','1998-11-29',27,1,'ivya@test.com',1,1);
+select * from user_info;
+
+-- user_npti 더미
+INSERT INTO user_npti (
+  user_id, npti_code,
+  long_score, short_score,
+  content_score, tale_score,
+  fact_score, insight_score,
+  positive_score, negative_score
+) VALUES
+('alex','LTFP',80,20,30,70,65,35,75,25),
+('brian','STFP',30,70,25,75,60,40,70,30),
+('chris','LTIN',75,25,65,35,40,60,30,70),
+('dylan','SCFN',20,80,70,30,55,45,25,75),
+('ethan','LTFP',78,22,32,68,66,34,72,28),
+('felix','SCIP',25,75,60,40,45,55,35,65),
+('grace','LCFP',82,18,28,72,70,30,80,20),
+('henry','STIN',35,65,40,60,38,62,30,70),
+('irene','LTFP',85,15,30,70,68,32,78,22),
+('jason','STFN',28,72,25,75,62,38,33,67),
+('kevin','LCFN',88,12,75,25,80,20,40,60),
+('luna','SCFP',22,78,68,32,55,45,65,35),
+('mason','LCIP',83,17,60,40,45,55,70,30),
+('nolan','STIP',34,66,35,65,48,52,60,40),
+('oliver','LTIN',79,21,55,45,42,58,28,72),
+('paul','SCFN',26,74,70,30,65,35,45,55),
+('quinn','LTFN',81,19,30,70,50,50,20,80),
+('ryan','SCIP',24,76,62,38,47,53,55,45),
+('steve','LCIN',86,14,72,28,60,40,35,65),
+('tina','STFP',32,68,30,70,58,42,75,25),
+('aaro','SCIP',33,67,56,44,48,52,66,34),
+('brik','LTFN',71,29,43,57,56,44,34,66),
+('cavo','STFP',41,59,36,64,51,49,72,28),
+('dren','LCIN',78,22,58,42,61,39,35,65),
+('elmo','SCFN',29,71,59,41,69,31,32,68),
+('firo','LTIP',75,25,38,62,45,55,70,30),
+('glen','LTFP',73,27,40,60,55,45,64,36),
+('havo','STIN',36,64,43,57,56,44,34,66),
+('ivor','LCFP',79,21,61,39,66,34,73,27),
+('jaro','SCIN',26,74,58,42,61,39,36,64),
+('keln','STIP',43,57,41,59,46,54,69,31),
+('lavo','LTFN',70,30,42,58,57,43,33,67),
+('mire','LCIP',81,19,56,44,51,49,68,32),
+('nexo','STFN',39,61,38,62,66,34,31,69),
+('orik','SCFP',31,69,61,39,53,47,66,34),
+('pavo','LTIN',72,28,37,63,49,51,31,69),
+('qren','LTFP',74,26,41,59,54,46,67,33),
+('rivo','LCFN',77,23,59,41,71,29,33,67),
+('selo','STFP',40,60,35,65,50,50,71,29),
+('tavo','SCIP',32,68,55,45,47,53,65,35),
+('ulon','LTIN',73,27,36,64,48,52,30,70),
+('viro','LCFP',78,22,60,40,65,35,72,28),
+('wexo','STFN',38,62,37,63,65,35,30,70),
+('xiro','SCIN',25,75,57,43,60,40,35,65),
+('yani','LTFP',72,28,40,60,55,45,65,35),
+('zelo','LCIP',80,20,55,45,50,50,68,32),
+('aria','STIP',42,58,40,60,45,55,70,30),
+('bela','SCFP',30,70,60,40,52,48,64,36),
+('clio','LTFN',69,31,44,56,58,42,37,63),
+('dara','LCIN',76,24,57,43,62,38,34,66),
+('elle','STIN',35,65,42,58,55,45,33,67),
+('fina','SCFN',28,72,58,42,68,32,29,71),
+('gaya','LTIP',74,26,39,61,46,54,71,29),
+('hana','STFP',44,56,37,63,52,48,73,27),
+('ivya','LCFN',75,25,60,40,70,30,31,69);
+select * from user_npti where user_id = 'admin1';
+select * from user_npti where user_id = 'doojjonkoo';
+select * from user_info where user_id = 'test12';
+select * from user_npti;
+
+DELETE FROM user_info
+WHERE user_id = 'test12';
+delete from user_npti where user_id = 'doojjonkoo' and npti_code = 'LTFN';
+delete from user_npti where user_id = 'admin1';
+
+select * from user_npti where user_id = 'admin1';
+select * from user_answer;
+select * from user_info;
+
+UPDATE user_npti
+SET updated_at = '2026-01-15 11:20:09.000'
+WHERE user_id = 'admin1';
+
+
+
+
