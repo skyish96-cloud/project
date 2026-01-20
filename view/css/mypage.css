@@ -1,0 +1,404 @@
+/* ================= MY PAGE 핵심 레이아웃 ================= */
+
+main {
+    max-width: 620px;
+    margin: 60px auto 100px;
+    padding: 0 20px;
+}
+
+/* 1. 프로필 상단부 (아이콘 및 핸들) */
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 40px;
+}
+
+.profile-main-info {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+}
+
+.profile-avatar {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #ff6b00;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #ff6b00;
+}
+
+.user-meta {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-handle {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111;
+    letter-spacing: -0.5px;
+}
+
+.btn-dots {
+    background: none;
+    border: none;
+    color: #ccc;
+    cursor: pointer;
+    padding: 0;
+}
+
+.btn-dots i {
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+.btn-dots:hover {
+    color:#ff6b00;
+}
+
+.dots-dropdown {
+    display: none;
+    position: absolute;
+    top: 25px;
+    right: 0;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    padding: 5px;
+}
+
+.dots-dropdown.show {
+    display: block;
+}
+
+.dropdown-item {
+    background: none;
+    border: none;
+    color: #555;
+    padding: 8px 15px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.dropdown-item:hover {
+    color: #ff6b00;
+}
+
+/* 2. 회원정보 폼 (입력창 간격 및 디자인) */
+.info-form {
+    margin-bottom: 40px;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.form-row label {
+    width: 80px; /* 라벨과 입력창 사이의 비율 */
+    font-size: 16px;
+    font-weight: 600;
+    color: #111;
+    font-family: inherit;
+}
+
+.form-row input {
+    flex: 1;
+    padding: 14px 40px 14px 16px;
+    border: 1px solid rgba(17, 17, 17, 0.5);
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    background-color: #fff;
+    color: #555;
+    font-family: inherit;
+}
+
+.form-row input[readonly] {
+    cursor: default;
+}
+
+/* 3. 프로필 편집 버튼 */
+.form-submit {
+    text-align: center;
+}
+
+.btn-edit-profile {
+    background-color: #ff6b00;
+    color: #fff;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* 4. 하단 NPTI 상태 배너 (사진 속 살구색 배너 완벽 재현) */
+.npti-status-banner {
+    margin: 0 auto;
+    background: rgba(255, 107, 0, 0.08);
+    border: 1px solid #FFDEC2;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 40px;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.npti-status-banner p {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}
+
+.npti-status-banner .highlight {
+    color: #ff6b00;
+    font-weight: 800;
+}
+
+.banner-right span {
+    font-size: 13px;
+    font-weight: 400;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.banner-right span:hover {
+    color: #ff6b00;
+}
+
+/* 팝업 오버레이 */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+
+/* NPTI 진단 결과 섹션 (result.css 스타일 반영) */
+
+.result-container {
+    width: 100%;
+    padding: 10px 0 40px;
+    text-align: center;
+    /* border-top: 1px solid var(--border); 마이페이지 폼과 구분 */
+
+}
+
+/* 유저 정보 및 결과 타이틀 */
+.user-info {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 8px;
+    display: block;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+.user-info .highlight {
+    color: var(--orange);
+}
+
+.result-title-group h2 {
+    font-size: 36px;
+    color: var(--orange);
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.result-title-group p {
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 10px;
+    color: #333;
+}
+
+/* 요약 박스 */
+.result-summary-box {
+    border: 1.5px solid var(--orange);
+    border-radius: 16px;
+    padding: 30px;
+    margin: 40px auto;
+    max-width: 650px;
+    line-height: 1.8;
+    background-color: #fff;
+    text-align: center;
+}
+
+.result-summary-box p {
+    font-size: 18px;
+    color: #444;
+}
+
+/* 차트 컨테이너 */
+.chart-container {
+    max-width: 650px;
+    margin: 0 auto;
+    border: 1.5px solid var(--orange);
+    border-radius: 16px;
+    padding: 50px 60px 20px;
+}
+
+.chart-item {
+    margin-bottom: 40px;
+}
+
+.chart-labels {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+.chart-labels b {
+    color: #ff6b00;
+}
+
+.type-title {
+    font-weight: 600;
+    font-size: 16px;
+    color: #000;
+}
+
+/* 차트 바 레이아웃 */
+.chart-bar-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.progress-track {
+    flex: 1;
+    height: 32px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 바 색상 및 애니메이션 */
+.orange-bar,
+.orange-bar-right {
+    height: 100%;
+    background: var(--orange);
+    width: 0;
+    transition: width 1.5s cubic-bezier(0.1, 0.5, 0.5, 1);
+}
+
+.orange-bar-right {
+    float: right;
+}
+
+/* 알파벳 폰트 스타일 */
+.char-left,
+.char-right {
+    font-size: 28px;
+    font-weight: 900;
+    color: #111;
+    min-width: 30px;
+    text-align: center;
+    transition: color 0.5s ease;
+}
+
+/* 강조된 알파벳 (JS에서 추가) */
+.char-highlight {
+    color: var(--orange) !important;
+}
+
+/* 버튼 스타일 */
+.btn-main-news {
+    background: var(--orange);
+    color: #fff;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    width: auto;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+/* NPTI 업데이트 설명 팝업 스타일 */
+.npti-update-tooltip {
+    display: none;
+    position: absolute;
+    bottom: 50%;
+    left: 100%;
+    transform: translateX(-50%);
+    width: 350px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    z-index: 1000;
+}
+
+.npti-update-tooltip h3 {
+    color: var(--orange);
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.npti-update-tooltip p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.npti-update-tooltip ul {
+    margin: 10px 0;
+    padding-left: 15px;
+}
+
+.npti-update-tooltip li {
+    font-size: 13px;
+    color: #333;
+    margin-bottom: 5px;
+    list-style: disc;
+}
+
+.tooltip-footer {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+    font-size: 13px;
+    color: var(--orange);
+}

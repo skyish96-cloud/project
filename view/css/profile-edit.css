@@ -1,0 +1,257 @@
+/* ================= PROFILE EDIT PAGE STYLES (MATCHED TO SIGNUP) ================= */
+
+/* 전체 레이아웃 (로그인/회원가입과 동일 여백 및 중앙 정렬) */
+main {
+    padding: 40px 0; /* 로그인 섹션과 동일 여백 */
+    display: flex;
+    justify-content: center;
+}
+
+.edit-container {
+    width: 400px; /* 고정 너비 400px 유지 */
+}
+
+/* 헤더 영역 */
+.edit-header {
+    text-align: left;
+    margin-bottom: 40px;
+}
+.edit-header h2 {
+    font-size: 32px; 
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--orange);
+    border-bottom: 1px solid rgba(17, 17, 17, 0.1);
+    font-family: inherit;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* 프로필 이미지 편집 영역 (특수 요소) */
+.edit-avatar-section {
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+    margin-bottom: 30px;
+    justify-content: flex-start;
+    font-family: inherit;
+}
+
+.avatar-circle {
+    width: 50px;
+    height: 50px;
+    border: 2px solid var(--orange);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+.avatar-circle i {
+    font-size: 24px;
+    color: var(--orange);
+}
+
+.user-handle {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111;
+    justify-content: flex-end;
+    letter-spacing: -0.5px;
+}
+
+/* 폼 및 그룹 스타일 */
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+    margin-bottom: 8px;
+}
+
+.form-group label {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--black);
+}
+
+/* 6. 인풋 박스 스타일 (input-wrapper/input 복사) */
+.input-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 14px 40px 14px 16px;
+    border: 1px solid rgba(17, 17, 17, 0.3);
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s;
+    background-color: #fff;
+    color: #111;
+    font-family: inherit;
+}
+
+.input-box input:focus {
+    border-color: var(--black);
+}
+
+/* X 버튼 / 캘린더 아이콘 위치 */
+.btn-clear,
+.icon-right {
+    position: absolute;
+    right: 12px;
+    color: #bbb;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+}
+
+.btn-clear {
+    cursor: pointer;
+}
+
+.btn-clear:hover {
+    color: #888;
+}
+
+.row-group {
+    display: flex;
+    gap: 8px;
+}
+
+/* 7. 상태 메시지 (helper-text 복사) */
+.status-text {
+    font-size: 13px;
+    font-weight: 600;
+    display: none;
+    margin-top: 4px;
+    min-height: 18px;
+}
+
+.status-text.visible {
+    display: block;
+}
+
+.status-text.success {
+    color: var(--orange);
+}
+
+.status-text.error {
+    color: #5266ff;
+}
+
+/* 8. 기타 요소 및 완료 버튼 */
+.edit-divider {
+    border: none;
+}
+
+.gender-selection {
+    display: flex;
+    gap: 24px;
+}
+
+.radio-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.radio-item input[type="radio"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+}
+
+.radio-item input[type="radio"]:checked {
+    border-color: var(--orange);
+}
+
+.radio-item input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--orange);
+    border-radius: 50%;
+}
+
+/* 완료 버튼 기본 상태 (주황색) */
+.btn-save {
+    width: 100%;
+    background-color: var(--orange);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 16px 0;
+    border: none;
+    border-radius: 8px;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+/* 비활성화 상태 (회색) */
+.btn-save:disabled {
+    background-color: #ccc !important;
+    color: #fff !important;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* [추가] 날짜 입력창 스타일 보정 */
+input[type="date"] {
+    appearance: none;
+    -webkit-appearance: none;
+    position: relative;
+    padding-right: 10px;
+    color: #111;
+    font-family: 'Pretendard', sans-serif;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    right: 12px;
+    cursor: pointer;
+    filter: invert(0.5);
+}
+
+input[type="number"] {
+    padding-right: 15px !important;
+}
+
+/* [추가] 나이 입력창 화살표(스핀 버튼) 위치 조정 */
+input[type="number"]::-webkit-outer-spin-button {
+    margin-right: 25px;
+    cursor: pointer;
+    opacity: 0.5;
+}

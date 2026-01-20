@@ -1,0 +1,231 @@
+<!-- 아직 안된 부분 -->
+<!-- 마이페이지 / 프로필수정 -->
+
+<!-- 참고 -->
+<!-- 아래 조합부분 다 조합 되고 아래 기사들도 바뀌는데 블러처리만 했어요 -->
+<!-- 여기도 데이터 넣어주세요 -->
+<!-- 조합하기 누르면 그 npti 관련 기사 나오게 해야 해주세요 -->
+
+<!-- 데이터 넣으면(로그인 회원가입까지) js에 로그인 해야 가능한 부분은 다 로그인으로 보낼 예정(연재) -->
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPTI - News Personality Type Indicator</title>
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/view/css/main.css">
+    <link rel="stylesheet" href="/view/css/about.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-inner container">
+            <div class="header-left">
+                <a href="/view/html/about.html" class="search-bubble">
+                    <span class="icon-circle"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <span class="text">"NPTI가 궁금하다면? 지금 클릭"</span>
+                </a>
+            </div>
+
+            <div id="aboutModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <div id="aboutRoot"></div>
+                </div>
+            </div>
+
+            <div class="header-center">
+                <a href="/" class="logo">
+                    <h1>NPTI</h1>
+                </a>
+                <p>News Personality Type Indicator</p>
+            </div>
+            <div class="header-right">
+                <a href="/login" class="login-link" id="authLink">로그인/회원가입</a>
+                <div class="icons">
+                    <button class="icon-btn search" onclick="location.href='/search'">
+                        <i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button class="icon-btn user" onclick="location.href='/mypage'">
+                        <i class="fa-regular fa-user"></i></button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="divider"></div>
+        <div class="breaking-news">
+            <div class="container flex-align">
+                <div class="label-group">
+                    <span class="txt-real">실시간</span>
+                    <span class="badge">속보</span>
+                </div>
+
+                <div class="ticker-viewport">
+                    <ul id="ticker-list" class="ticker-list">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="section-pick container">
+            <div class="npti-pick-header">
+                <h2 class="title-area">NPTI <span class="blue">PICK</span></h2>
+        
+                <div class="nav-row">
+                    <nav class="nav-tabs">
+                        <!-- "페이지 이동 없이 하단의 뉴스 리스트 영역만 실시간으로 교체(Rendering) 
+                        #과 data-category 속성을 조합 -->
+                        <a href="#" class="active" data-category="all">전체</a>
+                        <a href="#" data-category="politics">정치</a>
+                        <a href="#" data-category="economy">경제</a>
+                        <a href="#" data-category="society">사회</a>
+                        <a href="#" data-category="culture">생활/문화</a>
+                        <a href="#" data-category="it">IT/과학</a>
+                        <a href="#" data-category="world">세계</a>
+                        <a href="#" data-category="sports">스포츠</a>
+                        <a href="#" data-category="enter">연예</a>
+                        <a href="#" data-category="local">지역</a>
+                    </nav>
+                    <a href="/test" class="btn-bubble">나의 뉴스 성향 알아보기</a>
+                </div>
+            </div>
+            <div class="hero-slider-wrapper">
+                <div id="slider-track" class="slider-track">
+                </div>
+            
+                <button id="btn-prev" class="nav-arrow left"><i class="fa-solid fa-chevron-left"></i></button>
+                <button id="btn-next" class="nav-arrow right"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            
+            <div id="pagination-dots" class="pagination"></div>
+        </section>
+
+        <section class="banner-section">
+            <a href="/test" class="container banner-inner">
+        
+                <div class="txt-group">
+                    <h3>나에게 딱 맞는 뉴스, 알고 싶다면?</h3>
+                    <p>당신의 뉴스 읽는 방식, NPTI로 확인해보세요</p>
+                </div>
+        
+                <div class="act-group">
+                    <span class="logo-txt">NPTI</span>
+        
+                    <span class="btn-orange">진단하러가기</span>
+                </div>
+        
+            </a>
+        </section>
+
+        <section class="section-lcin container">
+        
+            <div class="lcin-head">
+                <div class="title-area">
+                    <div class="badges" id="lcin-badges">
+                        <span id="badge-0" style="cursor: pointer;">L</span>
+                        <span id="badge-1" style="cursor: pointer;">C</span>
+                        <span id="badge-2" style="cursor: pointer;">I</span>
+                        <span id="badge-3" style="cursor: pointer;">P</span>
+                    </div>
+                    <span class="role">리스크 구조 분석가</span>
+                </div>
+                
+                <div class="lcin-control-row">
+                    <div class="tags">
+                        <div class="tag-text">
+                            <span id="desc-0"><strong class="blue">L</strong> - 긴</span>
+                            <span id="desc-1"><strong class="blue">C</strong> - 텍스트형</span>
+                            <span id="desc-2"><strong class="blue">I</strong> - 분석적</span>
+                            <span id="desc-3"><strong class="blue">P</strong> - 우호적</span>
+                        </div>
+                    </div>
+            
+                    <span id="btn-combine" class="btn-outline" style="cursor: pointer;">[ 조합하기 ]</span>
+                </div>
+            </div>
+            
+            <nav class="nav-tabs border-type">
+                <a href="#" class="active">전체</a>
+                <a href="#">정치</a>
+                <a href="#">경제</a>
+                <a href="#">사회</a>
+                <a href="#">생활/문화</a>
+                <a href="#">IT/과학</a>
+                <a href="#">세계</a>
+                <a href="#">스포츠</a>
+                <a href="#">연예</a>
+                <a href="#">지역</a>
+            </nav>
+            
+            <div class="blur-wrapper">
+                <!-- 기본 뉴스기사들 -->
+                <div id="news-grid" class="news-grid"></div>
+            
+                <div class="banner-overlay">
+                    <div class="banner-card">
+                        <div class="banner-text">
+                            <h3>NPTI 진단 후 확인해 보세요</h3>
+                            <p>NPTI 진단으로 다양한 성향의 기사 읽어볼 수 있습니다.</p>
+                        </div>
+                        <div class="banner-action">
+                            <span class="logo-text">NPTI</span>
+                            <a href="/test" class="btn-diagnosis">진단하러 가기</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="more-area">
+                <a href="/curation" class="btn-load-more">더보기</a>
+            </div>
+        </section>
+
+        <!-- 팝업창 -->
+        <div id="logoutModal" class="modal-overlay">
+            <div class="modal-box">
+                <p class="modal-message">정말 로그아웃 하시겠습니까?</p>
+                <div class="modal-btn-group">
+                    <button id="closeLogout" class="btn-cancel">취소</button>
+                    <button id="confirmLogout" class="btn-confirm">확인</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="loginGuardModal" class="modal-overlay">
+            <div class="modal-box">
+                <p class="modal-message">로그인이 필요한 서비스입니다.<br>로그인 페이지로 이동하시겠습니까?</p>
+                <div class="modal-btn-group">
+                    <button id="closeLoginGuard" class="btn-cancel">취소</button>
+                    <button id="goToLogin" class="btn-confirm">로그인하기</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="hasNPTIGuardModal" class="modal-overlay">
+            <div class="modal-box">
+                <p class="modal-message">성향 진단 후<br>맞춤 뉴스를 확인할 수 있습니다.</p>
+                <div class="modal-btn-group">
+                    <button id="closeNPTIGuard" class="btn-cancel">취소</button>
+                    <button id="goToTest" class="btn-confirm">진단하러 가기</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        &copy; 2025 NPTI News Service. All rights reserved.
+    </footer>
+
+    <script src="/view/js/main.js"></script>
+    <script src="/view/js/about.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPTI - 나의 맞춤 뉴스 큐레이션</title>
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/view/css/main.css">
+    <link rel="stylesheet" href="/view/css/curation.css">
+    <link rel="stylesheet" href="/view/css/about.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-inner container">
+            <div class="header-left">
+                <a href="/about.html" class="search-bubble">
+                    <span class="icon-circle"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <span class="text">"NPTI가 궁금하다면? 지금 클릭"</span>
+                </a>
+            </div>
+
+            <div id="aboutModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <div id="aboutRoot"></div>
+                </div>
+            </div>
+
+            <div class="header-center">
+                <a href="/" class="logo">
+                    <h1>NPTI</h1>
+                </a>
+                <p>News Personality Type Indicator</p>
+            </div>
+            <div class="header-right">
+                <a href="/login.html" class="login-link" id="authLink">로그인/회원가입</a>
+                <div class="icons">
+                    <button class="icon-btn search" onclick="location.href='/search'"><i
+                            class="fa-solid fa-magnifying-glass"></i></button>
+                    <button class="icon-btn user" onclick="location.href='/mypage'"><i
+                            class="fa-regular fa-user"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+    </header>
+
+    <main class="container">
+        <section class="curation-top">
+            <div id="nptiResultHeader" class="npti-result-container"></div>
+
+            <nav class="nav-tabs border-type">
+                <a href="#" class="active" data-category="all">전체</a>
+                <a href="#" data-category="정치">정치</a>
+                <a href="#" data-category="경제">경제</a>
+                <a href="#" data-category="사회">사회</a>
+                <a href="#" data-category="생활/문화">생활/문화</a>
+                <a href="#" data-category="IT/과학">IT/과학</a>
+                <a href="#" data-category="세계">세계</a>
+                <a href="#" data-category="스포츠">스포츠</a>
+                <a href="#" data-category="연예">연예</a>
+                <a href="#" data-category="지역">지역</a>
+            </nav>
+        </section>
+
+        <section class="news-feed-section">
+            <div class="search-sort-container">
+                <div class="feed-title-row">
+                    <h2 id="categoryName">전체</h2>
+                    <div class="sort-tabs">
+                        <button type="button" class="sort-btn active" data-sort="accuracy">정확도순</button>
+                        <button type="button" class="sort-btn" data-sort="latest">최신순</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="curationList" class="curation-list">
+            </div>
+
+            <div id="paginationContainer"></div>
+        </section>
+
+        <!-- 팝업 -->
+        <div id="logoutModal" class="modal-overlay">
+            <div class="modal-box">
+                <p class="modal-message">정말 로그아웃 하시겠습니까?</p>
+                <div class="modal-btn-group">
+                    <button id="closeLogout" class="btn-cancel">취소</button>
+                    <button id="confirmLogout" class="btn-confirm">확인</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="/view/js/main.js"></script>
+    <script src="/view/js/curation.js"></script>
+    <script src="/view/js/about.js"></script>
+</body>
+
+</html>

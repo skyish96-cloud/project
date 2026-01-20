@@ -1,0 +1,480 @@
+/* ================= SEARCH PAGE STYLES ================= */
+
+.search-section {
+    padding-top: 60px;
+}
+
+/* "검색" 타이틀 */
+.page-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 12px;
+}
+
+/* 검색 폼 레이아웃 (가로 정렬) */
+.search-form {
+    display: flex;
+    gap: 8px;
+    /* 요소 사이 간격 */
+    align-items: center;
+    width: 100%;
+}
+
+/* [수정] 1. 셀렉트 박스 (전체) - 커스텀 화살표 적용 */
+.search-select {
+    width: 100px;
+    height: 48px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+    padding: 0 30px 0 12px;
+
+    font-size: 15px;
+    color: #555;
+    outline: none;
+    cursor: pointer;
+    font-family: inherit;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23999999%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-13%205.4A17.6%2017.6%200%200%200%200%2087.2c0%205%201.8%209.3%205.4%2013l128%20127.7c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%20100.3c3.6-3.6%205.4-7.8%205.4-12.8%200-5-1.8-9.3-5.4-13z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-size: 12px auto;
+    background-position: right 12px center;
+}
+
+.search-select:focus {
+    border-color: var(--black);
+}
+
+/* 2. 인풋 래퍼 (입력창 + X버튼) */
+.input-wrapper {
+    position: relative;
+    flex: 1;
+    /* 남은 공간 모두 차지 */
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    width: 100%;
+    height: 48px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0 40px 0 16px;
+    font-size: 15px;
+    color: var(--black);
+    outline: none;
+    font-family: inherit;
+}
+
+.search-input::placeholder {
+    color: #bbb;
+}
+
+.search-input:fo {
+    border-color: var(--black);
+}
+
+/* X 버튼 스타일 */
+.btn-clear {
+    position: absolute;
+    right: 12px;
+    color: #bbb;
+    font-size: 16px;
+    display: none;
+    /* JS로 제어 (기본 숨김) */
+}
+
+.btn-clear:hover {
+    color: #888;
+}
+
+/* 3. 검색 버튼 */
+.btn-search {
+    background-color: var(--orange);
+    color: #fff;
+    width: 80px;
+    height: 48px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 700;
+    transition: background 0.2s;
+}
+
+/* --- 커스텀 드롭다운 스타일 시작 --- */
+
+/* 드롭다운 전체 컨테이너 */
+.custom-select {
+    position: relative;
+    min-width: 120px;
+    width: fit-content;
+    font-family: 'Pretendard', sans-serif;
+    user-select: none;
+}
+
+/* 1. 드롭다운 버튼 (평소 모습) */
+.select-btn {
+    width: 100%;
+    height: 48px;
+    padding: 0 14px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    white-space: nowrap;
+    gap: 10px;
+}
+
+.btn-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* 2. 드롭다운 목록 (클릭하면 나오는 박스) */
+.select-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    margin-top: 8px;
+    padding: 10px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+/* 활성화(Active) 클래스가 붙으면 목록이 보임 */
+.custom-select.active .select-options {
+    display: block;
+}
+
+/* 활성화 시 버튼 테두리 색 변경 */
+.custom-select.active .select-btn {
+    border-color: #111;
+}
+
+/* 화살표 아이콘 회전 */
+.custom-select.active .arrow {
+    transform: rotate(180deg);
+}
+
+/* 화살표 기본 스타일 */
+.arrow {
+    font-size: 10px;
+    color: #ff6b00;
+    margin-left: 8px;
+}
+
+/* 3. 개별 옵션 항목 (체크박스 + 텍스트) */
+.select-options li {
+    margin-bottom: 8px;
+}
+
+.select-options li:last-child {
+    margin-bottom: 0;
+}
+
+.option-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: #555;
+    width: 100%;
+}
+
+.option-item:hover {
+    color: #000;
+}
+
+/* 기본 체크박스 숨기기 및 사각형 디자인 */
+.option-item input[type="checkbox"] {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    position: relative;
+    cursor: pointer;
+    margin-right: 12px;
+    accent-color: transparent;
+}
+
+/* 체크 시 배경색 */
+.option-item input[type="checkbox"]:checked {
+    background-color: #ff6b00;
+    border-color: #ff6b00;
+}
+
+/* 얇은 체크 표시(V) */
+.option-item input[type="checkbox"]::after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 5px;
+    width: 3px;
+    height: 8px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    display: none;
+}
+
+.option-item input[type="checkbox"]:checked::after {
+    display: block;
+}
+
+/* (참고) 기존 레이아웃 보정을 위한 스타일 */
+.search-form {
+    display: flex;
+    gap: 10px;
+    /* 드롭다운과 검색창 사이 간격 */
+    align-items: center;
+}
+
+/* 검색 결과 메시지 스타일 */
+#search-message {
+    margin-top: 30px;
+    text-align: left;
+    font-size: 16px;
+    color: #666;
+    min-height: 24px;
+}
+
+/* 강조할 검색어 스타일 (strong 태그) */
+#search-message strong {
+    color: #ff6b00;
+    font-weight: 600;
+}
+
+/* 검색 결과 컨테이너 */
+.results-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0px auto;
+    padding: 0;
+}
+
+/* 개별 검색 결과 항목 (연한 선으로 구분) */
+.result-item {
+    display: flex;
+    gap: 20px;
+    padding: 24px 0;
+    border-bottom: 1px solid #f0f0f0;
+    text-decoration: none;
+    color: inherit;
+}
+
+.result-item:last-child {
+    border-bottom: none;
+}
+
+/* 텍스트 영역 */
+.result-info {
+    flex: 1;
+}
+
+/* 제목: 1줄 제한 후 ... 표시 */
+.result-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #333;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
+}
+
+/* 본문: 3줄 제한 후 ... 표시 */
+.result-content {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* 이미지 영역 */
+.result-image {
+    width: 160px;
+    height: 100px;
+    flex-shrink: 0;
+}
+
+.result-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* --- 공통 컨테이너 설정 (옆 간격 일치) --- */
+.search-section .container {
+    max-width: 1000px;
+    /* 메인 슬라이더와 동일한 너비로 설정하세요 */
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- 검색 폼 레이아웃 --- */
+.search-form {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+/* --- 검색 결과 리스트 레이아웃 --- */
+.results-container {
+    margin-top: 30px;
+}
+
+/* 개별 기사 항목 */
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 25px 0;
+    border-bottom: 1px solid #f2f2f2;
+    /* 항목 사이 연한 선 */
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.result-item:hover {
+    background-color: #fafafa;
+}
+
+/* 텍스트 영역 (왼쪽) */
+.result-info {
+    flex: 1;
+}
+
+/* 제목: 1줄 제한 후 ... */
+.result-title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* 본문: 3줄 제한 후 ... */
+.result-content {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #666;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* 이미지 영역 (오른쪽) */
+.result-image {
+    width: 180px;
+    /* 이미지 크기 조절 */
+    height: 110px;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.result-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 페이지네이션 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 50px 0;
+}
+
+.pagination button {
+    border: none;
+    background: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 15px;
+    color: #999;
+}
+
+.pagination .page-num.active {
+    color: #ff6b00;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+/* 검색 결과 상단 영역 (건수 + 정렬) */
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px;
+    margin: 30px auto 15px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.result-count-info {
+    font-size: 14px;
+    color: #333;
+}
+
+/* 정렬 탭 스타일 */
+.sort-tabs {
+    display: flex;
+    gap: 15px;
+}
+
+.sort-btn {
+    background: none;
+    border: none;
+    font-size: 14px;
+    color: #999;
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+}
+
+/* 선택된 탭 강조 (주황색) */
+.sort-btn.active {
+    color: #ff6b00;
+    font-weight: 700;
+}
+
+/* 탭 사이의 구분선 (|) */
+.sort-btn:not(:last-child)::after {
+    content: "";
+    display: inline-block;
+    width: 1px;
+    height: 10px;
+    background-color: #ddd;
+    margin-left: 15px;
+    vertical-align: middle;
+}

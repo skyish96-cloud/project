@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPTI - 관리자대시보드</title>
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/view/css/main.css">
+    <link rel="stylesheet" href="/view/css/about.css">
+    <link rel="stylesheet" href="/view/css/dashboard.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-inner container">
+            <div class="header-left">
+                <a href="/view/html/about.html" class="search-bubble">
+                    <span class="icon-circle"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <span class="text">"NPTI가 궁금하다면? 지금 클릭"</span>
+                </a>
+            </div>
+
+            <div id="aboutModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <div id="aboutRoot"></div>
+                </div>
+            </div>
+
+            <div class="header-center">
+                <a href="/" class="logo">
+                    <h1>NPTI</h1>
+                </a>
+                <p>News Personality Type Indicator</p>
+            </div>
+            <div class="header-right">
+                <a href="/login" class="login-link" id="authLink">로그인/회원가입</a>
+                <div class="icons">
+                    <button class="icon-btn search" onclick="location.href='/search'">
+                        <i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button class="icon-btn user" onclick="location.href='/mypage'">
+                        <i class="fa-regular fa-user"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+    </header>
+
+    <main>
+        <section class="section-pick container">
+            <div class="npti-pick-header">
+                <h2 class="title-area">관리자 <span class="blue">Dashboard</span></h2>
+    
+                <div class="nav-row">
+                    <nav class="nav-tabs">
+                        <a href="#" class="active" data-category="stats">NPTI 사용자 통계</a>
+                        <a href="#" data-category="articles">기사통계</a>
+                        <!-- <a href="#" data-category="errors">에러알림</a> -->
+                        <!-- <a href="#" data-category="users">회원관리</a> -->
+                        <!-- <a href="#" data-category="survey">설문관리</a> -->
+                    </nav>
+                    <a href="/test" class="btn-bubble"
+                        style="visibility: hidden !important; opacity: 0 !important; pointer-events: none !important;">나의 뉴스
+                        성향 알아보기</a>
+                </div>
+            </div>
+    
+            <div id="adminContentArea" class="admin-content-body"></div>
+        </section>
+
+            <!-- 팝업 -->
+            
+            <div id="logoutModal" class="modal-overlay">
+                <div class="modal-box">
+                    <p class="modal-message">정말 로그아웃 하시겠습니까?</p>
+                    <div class="modal-btn-group">
+                        <button id="closeLogout" class="btn-cancel">취소</button>
+                        <button id="confirmLogout" class="btn-confirm">확인</button>
+                    </div>
+                </div>
+            </div>
+        
+    </main>
+
+    <footer>
+        &copy; 2025 NPTI News Service. All rights reserved.
+    </footer>
+
+    <script src="/view/js/main.js"></script>
+    <script src="/view/js/about.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/view/js/dashboard.js"></script>
+</body>
+
+</html>

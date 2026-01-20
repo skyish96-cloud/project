@@ -1,0 +1,298 @@
+/* ================= SIGNUP PAGE STYLES ================= */
+
+.signup-section {
+    padding: 80px 0 100px;
+    /* 상하 여백 */
+    display: flex;
+    justify-content: center;
+}
+
+.signup-container {
+    width: 400px;
+    /* 폼 너비 고정 */
+    /* text-align: center; */
+}
+
+/* 헤더 영역 */
+.signup-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.signup-header h2 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    color: var(--black);
+}
+
+.signup-header p {
+    font-size: 15px;
+    color: #888;
+    line-height: 1.4;
+}
+
+/* 폼 공통 스타일 */
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* 각 항목 사이 간격 */
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    /* 라벨과 인풋 사이 간격 */
+}
+
+.input-group label {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--black);
+}
+
+/* 인풋 박스 스타일 */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 14px 40px 14px 16px;
+    border: 1px solid rgba(17, 17, 17, 0.3);
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s;
+    font-family: inherit;
+    color: #111;
+}
+
+.input-wrapper input::placeholder {
+    color: #bbb;
+}
+
+.input-wrapper input:focus {
+    border-color: var(--black);
+}
+
+/* X 버튼 / 캘린더 아이콘 위치 */
+.btn-clear,
+.icon-right {
+    position: absolute;
+    right: 12px;
+    color: #bbb;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+}
+
+.btn-clear {
+    cursor: pointer;
+}
+
+.btn-clear:hover {
+    color: #888;
+}
+
+.row-group {
+    display: flex;
+    gap: 8px;
+}
+
+/* 중복확인 버튼 */
+.btn-check {
+    background-color: var(--orange);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 0 16px;
+    border-radius: 8px;
+    white-space: nowrap;
+    transition: background 0.2s;
+}
+
+/* 도움말 텍스트 (기본 숨김) */
+.helper-text {
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 6px;
+    display: none;
+    /* JS가 건드리기 전엔 안 보임 */
+}
+
+/* 성별 라디오 버튼 */
+.gender-options {
+    display: flex;
+    gap: 24px;
+    padding-top: 4px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.radio-label input[type="radio"] {
+    appearance: none;
+    /* 기본 스타일 제거 */
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+}
+
+/* 라디오 체크되었을 때 스타일 */
+.radio-label input[type="radio"]:checked {
+    border-color: var(--orange);
+}
+
+.radio-label input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--orange);
+    border-radius: 50%;
+}
+
+.radio-text {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* 회원가입 버튼 */
+.btn-submit {
+    width: 100%;
+    background-color: var(--orange);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 16px 0;
+    border-radius: 8px;
+    margin-top: 30px;
+    transition: all 0.3s;
+}
+
+/* 비활성화 상태 (회색) */
+.btn-submit:disabled {
+    background-color: #ccc;
+    color: #fff;
+    cursor: default;
+    pointer-events: none;
+}
+
+/* [추가] 날짜 입력창 스타일 보정 */
+input[type="date"] {
+    appearance: none;
+    /* 기본 스타일 초기화 (모바일 대응) */
+    -webkit-appearance: none;
+    position: relative;
+    padding-right: 10px;
+    /* 오른쪽 여백 조정 */
+    color: #111;
+    /* 글자색 통일 */
+    font-family: 'Pretendard', sans-serif;
+    /* 폰트 통일 */
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    right: 12px;
+    cursor: pointer;
+    filter: invert(0.5);
+}
+
+input[type="number"] {
+    padding-right: 15px !important;
+}
+
+/* [추가] 나이 입력창 화살표(스핀 버튼) 위치 조정 */
+input[type="number"]::-webkit-outer-spin-button {
+    margin-right: 25px;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+/* ================= CUSTOM MODAL (로그인 페이지와 동일한 디자인) ================= */
+
+/* ================= CUSTOM MODAL (팝업) ================= */
+
+/* 1. 배경 (어둡게 처리) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(17, 17, 17, 0.1);
+    z-index: 9999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* 2. 팝업창 (흰색 박스) */
+.modal-box {
+    background: #fff;
+    padding: 20px 30px;
+    width: 450px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(17, 17, 17, 0.1);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    margin-bottom: 100px;
+}
+
+/* 3. 텍스트 */
+.modal-message {
+    font-size: 16px;
+    font-weight: 400;
+    color: #111;
+    margin-bottom: 24px;
+    line-height: 1.5;
+    word-break: keep-all;
+    white-space: pre-wrap;
+}
+
+/* 4. 확인 버튼 (주황색) */
+.modal-btn {
+    background-color: var(--orange);
+    color: #fff;
+    border: none;
+    padding: 12px 0;
+    width: 100%;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+/* 5. 활성화 애니메이션 (JS가 .show를 붙이면 나타남) */
+.modal-overlay.show {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-overlay.show .modal-box {
+    transform: translateY(0);
+}

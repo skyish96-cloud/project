@@ -1,0 +1,206 @@
+/* about.css */
+.about-container {
+    padding: 40px 20px 100px;
+    max-width: 900px !important;
+    margin: 0 auto;
+}
+
+/* 공통 섹션 스타일 */
+.about-section {
+    margin-bottom: 80px;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--orange);
+    margin-bottom: 25px;
+    border-bottom: 1.5px solid #ddd;
+    display: inline-block;
+    padding-bottom: 8px;
+    width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/* 4가지 분류 기준 (Grid) */
+.criteria-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.criteria-card {
+    border: 1.5px solid #ddd;
+    border-radius: 12px;
+    padding: 10px 10px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+}
+
+.criteria-card h3 {
+    color: var(--orange);
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.criteria-card p {
+    font-size: 13px;
+    line-height: 0.5;
+    color: #555;
+    margin: 0;
+    text-align: center;
+}
+
+.vs-text {
+    font-weight: 600;
+    color: #333;
+    display: block;
+    margin: 20px 0;
+    font-size: 14px;
+}
+
+/* 16가지 성향 가이드 (Grid) */
+.guide-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.guide-card {
+    border: 1.5px solid #ddd;
+    border-radius: 15px;
+    padding: 20px 15px;
+    text-align: left;
+    background: #fff;
+    height: 100%;
+    transition: border-color 0.3s;
+}
+
+.guide-card:hover {
+    border-color: var(--orange);
+    background-color: #fffaf7;
+    
+}
+
+/* 예시 하이라이트 */
+
+.guide-code {
+    font-size: 20px;
+    font-weight: 900;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.guide-nickname {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--orange);
+    margin-bottom: 10px;
+    display: block;
+}
+
+.guide-desc {
+    font-size: 12px;
+    line-height: 2;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.guide-preference {
+    font-size: 12px;
+    line-height: 2;
+    color: #888;
+    border-top: 1px solid #f5f5f5;
+    padding-top: 10px;
+}
+
+/* 상단 텍스트 설명 */
+.intro-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 30px;
+}
+
+.highlight-orange {
+    color: var(--orange);
+    font-weight: 700;
+}
+
+@media (max-width: 768px){
+    .criteria-grid,
+    .guide-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 드래그 금지 */
+.guide-card,
+.criteria-card {
+    user-select: none;
+}
+
+/* --- 모달(Popup) 전용 스타일 추가 --- */
+
+/* 모달 배경 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+}
+
+/* 모달 컨텐츠 박스 */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 900px;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* 닫기 버튼 */
+.close-btn {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 30px;
+    /* 클릭하기 쉽게 조금 더 크게 */
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    line-height: 1;
+    z-index: 10001;
+    /* 다른 어떤 요소보다 위에 있도록 설정 */
+    padding: 10px;
+    /* 클릭 가능 영역 확장 */
+}
+
+.close-btn:hover {
+    color: var(--orange);
+}
+
+/* 모달 내부 타이틀 보정 */
+.modal-content .section-title {
+    width: 100% !important;
+    /* 기존 850px 고정 해제 */
+    max-width: 100%;
+}

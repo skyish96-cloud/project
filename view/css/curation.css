@@ -1,0 +1,228 @@
+/* 1. 전체적인 위아래 간격 조절 */
+.npti-result-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* NPTI 결과가 반영된 타이틀 스타일 */
+/* STFN 같은 영문 코드 */
+.npti-code {
+    font-size: 32px;
+    color: #FF6B00;
+    font-weight: 800;
+}
+
+/* 팩트 현실주의자 같은 한글 닉네임 */
+.npti-nickname {
+    font-size: 16px;
+    color: #111111;
+    font-weight: 700;
+    margin-left: 5px;
+}
+
+.tags {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 10px 10px;
+    width:auto;
+    background-color: #FFF2EB;
+    margin-bottom: 5px !important;
+}
+
+.tag-text {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #111;
+}
+
+/* 알파벳 포인트 컬러 */
+.tag-text .point {
+    color: #FF6B00;
+    font-weight: 800;
+}
+
+/* 2. 네비게이션 + 버튼 (아랫줄) */
+.nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(17, 17, 17, 0.2);
+    padding-bottom: 12px;
+}
+
+/* 네비게이션 탭 스타일 */
+.nav-tabs {
+    display: flex;
+    gap: 24px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #111
+}
+
+.nav-tabs a {
+    text-decoration: none;
+    color: inherit;
+    padding-bottom: 3px;
+    margin-bottom: -14px;
+    border-bottom: 3px solid transparent;
+    transition: color 0.2s;
+}
+
+/* 네비게이션 활성화 탭 강제 주황색 고정 */
+.nav-tabs a.active {
+    color: #FF6B00 !important;
+    border-bottom: 3px solid #FF6B00 !important;
+}
+
+/* 네비게이션 호버 시 주황색 고정 */
+.nav-tabs a:hover {
+    color: #FF6B00 !important;
+    border-bottom: 3px solid #FF6B00 !important;
+}
+
+/* 3. 뉴스 리스트 영역 (npticate_news.jpg 반영) */
+.news-feed-section {
+    margin-top: 40px;
+}
+
+.feed-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.feed-title-row h2 {
+    font-size: 24px;
+    font-weight: 800;
+}
+
+/* 뉴스 카드 (가로형) */
+.news-card {
+    display: flex;
+    gap: 25px;
+    padding: 25px 0;
+    border-bottom: 1px solid #f0f0f0;
+    text-decoration: none;
+    color: inherit;
+}
+
+.news-img {
+    width: 280px;
+    height: 160px;
+    background: #f8f8f8;
+    border-radius: 6px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.news-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.news-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.news-info h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+    line-height: 1.4;
+    /* 두 줄 이상 말줄임 처리 */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.news-info p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    /* 세 줄 이상 말줄임 처리 */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.news-meta {
+    font-size: 13px;
+    color: #999;
+}
+
+/* 정렬 탭 스타일 */
+.sort-tabs {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-left: auto;
+}
+
+.sort-btn {
+    background: none;
+    border: none;
+    font-size: 14px;
+    color: #999;
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+}
+
+/* 선택된 탭 강조 (주황색) */
+.sort-btn.active {
+    color: #ff6b00;
+    font-weight: 700;
+}
+
+/* 탭 사이의 구분선 (|) */
+.sort-btn:not(:last-child)::after {
+    content: "";
+    display: inline-block;
+    width: 1px;
+    height: 10px;
+    background-color: #ddd;
+    margin-left: 15px;
+    vertical-align: middle;
+}
+
+/* 페이지네이션 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 50px 0;
+}
+
+.pagination button {
+    border: none;
+    background: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 15px;
+    color: #999;
+}
+
+.pagination .page-num.active {
+    color: #ff6b00;
+    font-weight: 700;
+    text-decoration: underline;
+}

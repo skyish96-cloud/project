@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPTI - 로그인</title>
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/view/css/main.css">
+    <link rel="stylesheet" href="/view/css/login.css">
+    <link rel="stylesheet" href="/view/css/about.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-inner container">
+            <div class="header-left">
+                <a href="/view/html/about.html" class="search-bubble">
+                    <span class="icon-circle"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <span class="text">"NPTI가 궁금하다면? 지금 클릭"</span>
+                </a>
+            </div>
+
+            <div id="aboutModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <div id="aboutRoot"></div>
+                </div>
+            </div>
+
+            <div class="header-center">
+                <a href="/" class="logo">
+                    <h1>NPTI</h1>
+                </a>
+                <p>News Personality Type Indicator</p>
+            </div>
+            <div class="header-right">
+                <a href="/view/html/login.html" class="login-link" id="authLink">로그인/회원가입</a>
+                <div class="icons">
+                    <button class="icon-btn search" onclick="location.href='/search'">
+                        <i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button class="icon-btn user" onclick="location.href='/view/html/mypage.html'">
+                        <i class="fa-regular fa-user"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+    </header>
+
+    <main class="login-section">
+        <div class="login-container">
+            <div class="login-header">
+                <h2>로그인</h2>
+                <p>간단한 성향 분석으로,<br>나에게 맞는 뉴스 경험을 시작해보세요.</p>
+            </div>
+
+            <form class="login-form">
+                <div class="input-group">
+                    <label for="userid">아이디</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="userid" placeholder="아이디를 입력해주세요">
+                        <button type="button" class="btn-clear"><i class="fa-regular fa-circle-xmark"></i></button>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="userpw">비밀번호</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="userpw" placeholder="비밀번호를 입력해주세요">
+                        <button type="button" class="btn-clear"><i class="fa-regular fa-circle-xmark"></i></button>
+                    </div>
+                </div>
+
+                <p class="error-message">아이디 또는 비밀번호가 일치하지 않습니다.</p>
+
+                <button type="submit" class="btn-submit" disabled>로그인</button>
+            </form>
+
+            <div class="signup-area">
+                <span>아직 회원이 아니신가요?</span>
+                <a href="/signup" class="link-signup">회원가입</a>
+            </div>
+        </div>
+    </main>
+    
+    <div id="custom-alert" class="modal-overlay">
+        <div class="modal-box">
+            <p class="modal-message">메시지 내용이 여기에 들어갑니다.</p>
+            <button class="modal-btn" id="modal-ok-btn">확인</button>
+        </div>
+    </div>
+
+    <script src="/view/js/main.js"></script>
+    <script src="/view/js/login.js"></script>
+    <script src="/view/js/about.js"></script>
+</body>
+</html>

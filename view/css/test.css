@@ -1,0 +1,110 @@
+.test-container {
+    padding: 60px 0 100px;
+    max-width: 800px;
+    /* 질문 가독성을 위해 좁게 설정 */
+}
+
+.test-intro {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.test-intro h2 {
+    font-size: 28px;
+    color: var(--orange);
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.test-intro p {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* 개별 질문 카드 */
+.q-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 20px;
+}
+
+.q-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+/* 라디오 버튼 그룹 */
+.options-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 0 10px;
+}
+
+.options-group::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 110px;
+    right: 110px;
+    height: 1px;
+    background: #eee;
+    z-index: 1;
+}
+
+.option-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    z-index: 2;
+    background: #fff;
+    padding: 0 5px;
+}
+
+.option-label {
+    font-size: 12px;
+    color: #999;
+    font-weight: 500;
+}
+
+/* 실제 라디오 버튼 숨기기 및 커스텀 */
+.option-item input[type="radio"] {
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.option-item input[type="radio"]:checked {
+    border-color: var(--orange);
+    background: var(--orange);
+    box-shadow: inset 0 0 0 4px #fff;
+}
+
+/* 결과 확인 버튼 */
+.test-footer {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.btn-result {
+    background: var(--orange);
+    color: #fff;
+    font-size: 20px;
+    font-weight: 800;
+    padding: 20px 80px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 500px;
+}

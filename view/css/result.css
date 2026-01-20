@@ -1,0 +1,143 @@
+/* result.css */
+.result-container {
+    padding: 60px 0 100px;
+    text-align: center;
+}
+
+/* 유저 정보 및 결과 타이틀 */
+.user-info {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 8px;
+    display: block;
+    width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+.user-info .highlight {
+    color: var(--orange);
+}
+
+.result-title-group h2 {
+    font-size: 40px;
+    color: var(--orange);
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.result-title-group p {
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 10px;
+    color: #333;
+}
+
+/* 요약 박스 */
+.result-summary-box {
+    border: 1.5px solid var(--orange);
+    border-radius: 16px;
+    padding: 30px;
+    margin: 40px auto;
+    max-width: 650px;
+    line-height: 1.8;
+    background-color: #fff;
+}
+
+.result-summary-box p {
+    font-size: 18px;
+    color: #444;
+}
+
+.result-summary-box .point {
+    margin-top: 20px;
+    font-weight: 800;
+    color: #111;
+}
+
+/* 차트 컨테이너 */
+.chart-container {
+    max-width: 650px;
+    margin: 0 auto;
+    border: 1.5px solid var(--orange);
+    border-radius: 16px;
+    padding: 50px 60px 20px;
+}
+
+.chart-item {
+    margin-bottom: 40px;
+}
+
+.chart-labels {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+.type-title {
+    font-weight: 800;
+    font-size: 16px;
+    color: #000;
+}
+
+/* [중요] 바 양옆 배치를 위한 레이아웃 */
+.chart-bar-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.progress-track {
+    flex: 1;
+    height: 32px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.orange-bar,
+.orange-bar-right {
+    position: absolute;
+    height: 100%;
+    background: var(--orange);
+    width: 0;
+    transition: width 1.5s cubic-bezier(0.1, 0.5, 0.5, 1);
+}
+
+.orange-bar-right {
+    float: right;
+}
+
+/* 알파벳 스타일 및 전환 효과 */
+.char-left,
+.char-right {
+    font-size: 28px;
+    font-weight: 900;
+    color: #111;
+    min-width: 25px;
+    text-align: center;
+    transition: color 0.5s ease;
+}
+
+/* 버튼 */
+.result-footer {
+    margin-top: 60px;
+}
+
+.btn-main-news {
+    background: var(--orange);
+    color: #fff;
+    padding: 20px 0;
+    border-radius: 12px;
+    font-size: 20px;
+    font-weight: 800;
+    width: 100%;
+    max-width: 500px;
+}
