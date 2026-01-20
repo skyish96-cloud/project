@@ -1,0 +1,36 @@
+# server
+fastapi
+uvicorn
+python-multipart
+itsdangerous
+
+# DB & ES
+pymysql
+sqlalchemy
+elasticsearch
+pydantic[email]
+
+# crawling
+selenium
+beautifulsoup4
+requests
+webdriver_manager
+lxml
+
+# scheduler
+apscheduler
+psutil
+
+# 전처리
+pandas
+kiwipiepy
+Korpora
+
+# 머신러닝
+scikit-learn
+xgboost
+lightgbm
+joblib
+
+# 시각화
+matplotlib
